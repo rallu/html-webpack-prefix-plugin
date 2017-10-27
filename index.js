@@ -38,6 +38,20 @@ HtmlWebpackPrefixPlugin.prototype.addPrefix = function ( html, options ){
         var rawLinks = attrParse(html, function(tag, attr) {
             return attrs.indexOf(tag + ":" + attr) >= 0;
         });
+
+        if (options.prefixignore) {
+            rawLinks = rawLinks.filter(link => {
+                for (var i = 0; i < options.prefixignore.length; i++) {
+                    if (link.value.indexOf(options.prefixignore[i]) > -1) {
+                        console.log('ignoreing ' + link.value);
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        console.log(rawLinks);
         var links = [];
         rawLinks.forEach(function(link) {
             var length = link.length;
