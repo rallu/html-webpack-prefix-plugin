@@ -43,7 +43,6 @@ HtmlWebpackPrefixPlugin.prototype.addPrefix = function ( html, options ){
             rawLinks = rawLinks.filter(link => {
                 for (var i = 0; i < options.prefixignore.length; i++) {
                     if (link.value.indexOf(options.prefixignore[i]) > -1) {
-                        console.log('ignoreing ' + link.value);
                         return false;
                     }
                 }
@@ -51,7 +50,6 @@ HtmlWebpackPrefixPlugin.prototype.addPrefix = function ( html, options ){
             });
         }
 
-        console.log(rawLinks);
         var links = [];
         rawLinks.forEach(function(link) {
             var length = link.length;
